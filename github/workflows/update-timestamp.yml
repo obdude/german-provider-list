@@ -1,0 +1,33 @@
+name: Update Timestamp
+
+on:
+  push:
+    paths:
+      - 'providers.json'
+
+permissions:
+  contents: write
+
+jobs:
+  update-date:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Get Current Date
+        id: date
+        run: echo "date=$(date +'%d.%m.%Y')" >> $GITHUB_OUTPUT
+
+      - name: Inject Date into HTML
+        run: |
+          sed -i 's/<span id="last-updated"[^>]*>.*<\/span>/<span id="last-updated" class="ml-2 text-xs bg-gray-100 px-2 py-1 rounded text-slate-500">Stand: ${{ steps.date.outputs.date }}<\/span>/' index.html
+          sed -i 's/id="last-updated" class="hidden/id="last-updated" class="/' index.html
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+          git add index.html
+          git commit -m "Auto-update timestamp to ${{ steps.date.outputs.date }}" || echo "No changes to commit"
+          git push
