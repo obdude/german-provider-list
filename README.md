@@ -65,7 +65,7 @@ Is a provider missing? Did a provider switch networks (e.g., from O2 to Vodafone
 1.  **Edit the Data:** Open `providers.json` in this repo.
 2.  **Add/Fix the Entry:** Keep the structure clean.
 3.  **Submit a PR:** Create a Pull Request.
-4.  **Auto-Update:** An automated workflow will verify the JSON and update the "Last Updated" date on the website.
+4.  **Auto-Update:** An automated workflow will verify the JSON and deploy the update.
 
 ---
 
