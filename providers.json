@@ -8,6 +8,7 @@
   { "name": "Alphatel", "code": "ALPH", "net": "O2" },
   { "name": "Alphatel", "code": "ALPH", "net": "D1" },
   { "name": "Alphatel", "code": "ALPH", "net": "D2" },
+  { "name": "Testtel", "code": "TEST", "net": "D2" },
   { "name": "Amiva", "code": "TEL2", "net": "O2" },
   { "name": "Ay Yildiz", "code": "EPLU", "net": "O2" },
   { "name": "BILDconnect", "code": "VICT", "net": "O2" },
