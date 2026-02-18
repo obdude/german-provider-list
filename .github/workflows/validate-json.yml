@@ -1,0 +1,41 @@
+name: Validate Providers JSON
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'providers.json'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'providers.json'
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Validate JSON syntax and structure
+        run: |
+          # Check for valid JSON syntax
+          if ! jq '.' providers.json > /dev/null; then
+            echo "Error: providers.json is not valid JSON."
+            exit 1
+          fi
+          
+          # Check if all objects have 'name', 'code', and 'net' keys
+          # If any object is missing a key, 'all' will return false, making grep fail.
+          if ! jq 'map(has("name") and has("code") and has("net")) | all' providers.json | grep -q true; then
+            echo "Error: One or more entries in providers.json are missing 'name', 'code', or 'net' keys."
+            # Optional: print problematic entries
+            jq '.[] | select(has("name") and has("code") and has("net") | not)' providers.json
+            exit 1
+          fi
+          echo "providers.json successfully validated."
