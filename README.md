@@ -4,7 +4,7 @@ A highly structured, clean, and community-maintained JSON list of German mobile 
 
 **Primary Goal:** To help people find the correct **"Anbieterkennung"** (Provider Code) required to port a mobile number from one carrier to another (Rufnummernmitnahme).
 
-🔗 **[Live View / Search Tool](https://obdude.github.io/german-provider-list/)**
+🔗 **[Live View / Search Tool](https://providers.ikels.org)**
 
 ---
 
